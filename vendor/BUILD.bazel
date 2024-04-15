@@ -1,0 +1,18 @@
+cc_library(
+	name = "win_deps",
+	deps = [
+		"//vendor/EasyNet:easynet",	
+	],
+	linkopts = [
+		"-DEFAULTLIB:ws2_32.lib",
+	],
+	visibility = ["//visibility:public"],
+)
+
+cc_library(
+	name = "lin_deps",
+	deps = [
+		"//vendor/EasyNet:easynet",
+	],
+	visibility = ["//visibility:public"],
+)
