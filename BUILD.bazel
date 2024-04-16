@@ -1,5 +1,5 @@
 cc_library(
-    name = "win_game_lib",
+    name = "win_lib",
     includes = ["src"],
     srcs = glob(["src/**/*.c"]),
     hdrs = glob(["src/**/*.h"]),
@@ -9,12 +9,16 @@ cc_library(
 )
 
 cc_library(
-    name = "lin_game_lib",
+    name = "lin_lib",
     includes = ["src"],
     srcs = glob(["src/**/*.c"]),
     hdrs = glob(["src/**/*.h"]),
 	deps = [
 		"//vendor:lin_deps",
+	],
+	linkopts = [
+		"-pthread",
+		"-lpcap",
 	],
 )
 
@@ -22,7 +26,7 @@ cc_binary(
     name = "windows_binary",
     srcs = ["src/main.c"],
     deps = [
-        ":win_game_lib"
+        ":win_lib"
     ],
 )
 
@@ -30,6 +34,6 @@ cc_binary(
 	name = "linux_binary",
 	srcs = ["src/main.c"],
 	deps = [
-		":lin_game_lib",
+		":lin_lib",
 	],
 )
